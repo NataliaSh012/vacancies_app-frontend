@@ -11,7 +11,9 @@
     "cc": "npx generate-react-cli component"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.61.3",
     "@tanstack/react-table": "^8.20.5",
+    "axios": "^1.7.7",
     "generate-react-cli": "^8.4.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
