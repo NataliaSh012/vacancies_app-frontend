@@ -1,6 +1,7 @@
 export type VacancyModalComponentProps = {
   isOpen: boolean;
   onClose: () => void;
+  onSave: (data: Vacancy) => void;
   vacancy: Vacancy | null;
   children?: React.ReactNode;
 };
@@ -10,5 +11,5 @@ export type Vacancy = {
   position: string;
   salary: string;
   status: string;
-  note: string;
+  note?: string;
 };

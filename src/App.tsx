@@ -4,6 +4,7 @@ import { AddCompanyTable } from "./components/AddCompanyTable";
 import { useVacanciesListQuery } from "./api/getVacancies.query";
 import { VacancyModal } from "./components/VacancyModal";
 import { TableRow } from "./components/AddCompanyTable/AddCompanyTable.type";
+import { Vacancy } from './components/VacancyModal/VacancyModal.type';
 
 function App() {
   const { data, isLoading, error } = useVacanciesListQuery();
@@ -13,8 +14,14 @@ function App() {
   const editVacancy = (vacancy: TableRow | null) => {
     if (!isModalOpen) {
       setEditingVacancy(vacancy);
-      setModalOpen(true); 
+      setModalOpen(true);
     }
+  };
+
+  const updateVacancy = (updatedVacancy: Vacancy) => {
+    // editMutation.mutate(updatedVacancy);
+    console.log(updatedVacancy)
+    setModalOpen(false);
   };
 
   const closeModal = () => {
@@ -39,15 +46,15 @@ function App() {
       />
       <button
         onClick={() => editVacancy(null)}
-        style={{ marginBottom: "10px", padding: "10px", cursor: "pointer" }}
       >
         + Add Vacancy
       </button>
-        <VacancyModal
-          isOpen={isModalOpen}
-          onClose={closeModal}
-          vacancy={editingVacancy}
-        />
+      <VacancyModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        vacancy={editingVacancy}
+        onSave={updateVacancy}
+      />
     </>
   );
 }

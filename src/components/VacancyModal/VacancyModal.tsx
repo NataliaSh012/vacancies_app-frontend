@@ -8,6 +8,7 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
   isOpen,
   onClose,
   vacancy,
+  onSave,
 }) => {
   const {
     register,
@@ -40,7 +41,7 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
 
   const onSubmit = (data: Vacancy) => {
     console.log("Submitted data:", data);
-    // TODO: Add logic for creating or updating a vacancy
+    onSave(data);
     onClose();
   };
 
