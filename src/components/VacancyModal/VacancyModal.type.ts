@@ -12,4 +12,5 @@ export type Vacancy = {
   salary: string;
   status: string;
   note?: string;
+  _id?: string;
 };

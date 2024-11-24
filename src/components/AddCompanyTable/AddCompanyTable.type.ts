@@ -1,5 +1,7 @@
+import { Vacancy } from '../VacancyModal/VacancyModal.type';
+
 export type AddCompanyTableComponentProps = {
-  onEdit: (row: TableRow) => void;
+  onEdit: (row: Vacancy) => void;
   onDelete: (id: string) => void;
   data: Array<{
     company: string;
@@ -12,11 +14,3 @@ export type AddCompanyTableComponentProps = {
   children?: React.ReactNode;
 };
 
-export interface TableRow {
-  company: string;
-  position: string;
-  salary: string;
-  status: string;
-  note: string;
-  _id: string;
-}

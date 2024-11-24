@@ -3,25 +3,30 @@ import { useState } from "react";
 import { AddCompanyTable } from "./components/AddCompanyTable";
 import { useVacanciesListQuery } from "./api/getVacancies.query";
 import { VacancyModal } from "./components/VacancyModal";
-import { TableRow } from "./components/AddCompanyTable/AddCompanyTable.type";
-import { Vacancy } from './components/VacancyModal/VacancyModal.type';
+import { Vacancy } from "./components/VacancyModal/VacancyModal.type";
+import { useEditVacancyMutation } from "./api/editVacancy.query";
 
 function App() {
   const { data, isLoading, error } = useVacanciesListQuery();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [editingVacancy, setEditingVacancy] = useState<TableRow | null>(null);
+  const { mutate } = useEditVacancyMutation();
+  const [editingVacancy, setEditingVacancy] = useState<Vacancy | null>(null);
 
-  const editVacancy = (vacancy: TableRow | null) => {
+  const editVacancy = (vacancy: Vacancy | null) => {
     if (!isModalOpen) {
       setEditingVacancy(vacancy);
       setModalOpen(true);
+      
     }
   };
 
   const updateVacancy = (updatedVacancy: Vacancy) => {
-    // editMutation.mutate(updatedVacancy);
-    console.log(updatedVacancy)
+    console.log(updatedVacancy);
     setModalOpen(false);
+      mutate({
+        id: updatedVacancy?._id,
+        updatedVacancy,
+      });
   };
 
   const closeModal = () => {
@@ -44,11 +49,7 @@ function App() {
         onEdit={editVacancy}
         onDelete={deleteVacancy}
       />
-      <button
-        onClick={() => editVacancy(null)}
-      >
-        + Add Vacancy
-      </button>
+      <button onClick={() => editVacancy(null)}>+ Add Vacancy</button>
       <VacancyModal
         isOpen={isModalOpen}
         onClose={closeModal}
