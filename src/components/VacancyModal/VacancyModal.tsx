@@ -43,6 +43,7 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
     console.log("Submitted data:", data);
     onSave(data);
     onClose();
+    reset()
   };
 
   return (
