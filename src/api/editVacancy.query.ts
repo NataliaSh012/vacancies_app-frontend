@@ -1,8 +1,9 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client, QueryKeys } from "./shared";
-import { Vacancy } from '@src/components/VacancyModal/VacancyModal.type';
+import { Vacancy } from "@src/components/VacancyModal/VacancyModal.type";
 
 export const useEditVacancyMutation = () => {
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({
       id,
@@ -11,8 +12,19 @@ export const useEditVacancyMutation = () => {
       id: string | undefined;
       updatedVacancy: Vacancy;
     }) =>
-      client
-        .patch(`/vacancies/${id}`, updatedVacancy)
-        .then((response) => response.data),
+      client.patch(`/${id}`, updatedVacancy).then((response) => response.data),
+    onSuccess: (updatedVacancy) => {
+      queryClient.setQueryData([QueryKeys.GetVacanciesList], (oldData: any) => {
+        if (!oldData || !oldData.data) return oldData;
+        const updatedVacancies = oldData.data.map((vacancy: Vacancy) =>
+          vacancy._id === updatedVacancy.data._id ? updatedVacancy.data : vacancy
+        );
+
+        return {
+          ...oldData,
+          data: [...updatedVacancies],
+        };
+      });
+    },
   });
 };
