@@ -17,7 +17,9 @@ export const useEditVacancyMutation = () => {
       queryClient.setQueryData([QueryKeys.GetVacanciesList], (oldData: any) => {
         if (!oldData || !oldData.data) return oldData;
         const updatedVacancies = oldData.data.map((vacancy: Vacancy) =>
-          vacancy._id === updatedVacancy.data._id ? updatedVacancy.data : vacancy
+          vacancy._id === updatedVacancy.data._id
+            ? updatedVacancy.data
+            : vacancy
         );
 
         return {
@@ -25,6 +27,9 @@ export const useEditVacancyMutation = () => {
           data: [...updatedVacancies],
         };
       });
+    },
+    onError: (error) => {
+      console.error("Error editing vacancy:", error);
     },
   });
 };

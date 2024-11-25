@@ -5,28 +5,33 @@ import { useVacanciesListQuery } from "./api/getVacancies.query";
 import { VacancyModal } from "./components/VacancyModal";
 import { Vacancy } from "./components/VacancyModal/VacancyModal.type";
 import { useEditVacancyMutation } from "./api/editVacancy.query";
+import { useCreateVacancyMutation } from "./api/createVacancy.query";
 
 function App() {
   const { data, isLoading, error } = useVacanciesListQuery();
   const [isModalOpen, setModalOpen] = useState(false);
-  const { mutate } = useEditVacancyMutation();
+  const { mutate: editMutate } = useEditVacancyMutation();
+  const { mutate: createMutate } = useCreateVacancyMutation();
   const [editingVacancy, setEditingVacancy] = useState<Vacancy | null>(null);
 
   const editVacancy = (vacancy: Vacancy | null) => {
     if (!isModalOpen) {
       setEditingVacancy(vacancy);
       setModalOpen(true);
-      
     }
   };
 
   const updateVacancy = (updatedVacancy: Vacancy) => {
     console.log(updatedVacancy);
     setModalOpen(false);
-      mutate({
+    if (updatedVacancy._id) {
+      editMutate({
         id: updatedVacancy?._id,
         updatedVacancy,
       });
+    } else {
+      createMutate(updatedVacancy);
+    }
   };
 
   const closeModal = () => {
