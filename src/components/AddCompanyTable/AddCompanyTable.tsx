@@ -4,6 +4,7 @@ import {
   useReactTable,
   getCoreRowModel,
   getSortedRowModel,
+  SortingState,
 } from "@tanstack/react-table";
 import type { AddCompanyTableComponentProps } from "./AddCompanyTable.type";
 import { Vacancy } from "../VacancyModal/VacancyModal.type";
@@ -14,7 +15,7 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
   onDelete,
   data,
 }) => {
-  const [sorting, setSorting] = useState([]);
+  const [sorting, setSorting] = useState<SortingState>([]);
   const columns = [
     { accessorKey: "company", header: "Компания" },
     { accessorKey: "position", header: "Вакансия" },
@@ -28,7 +29,7 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
       cell: ({ row }: { row: { original: Vacancy } }) => (
         <div>
           <button onClick={() => onEdit(row.original)}>Edit</button>
-          <button onClick={() => onDelete(row.original._id)}>Delete</button>
+          <button onClick={() => onDelete(row.original._id!)}>Delete</button>
         </div>
       ),
     },
