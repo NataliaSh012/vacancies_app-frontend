@@ -9,6 +9,9 @@ import {
 import type { AddCompanyTableComponentProps } from "./AddCompanyTable.type";
 import { Vacancy } from "../VacancyModal/VacancyModal.type";
 import SortIcon from "@src/assets/sort.svg";
+import DeleteIcon from "@src/assets/delete.svg";
+import EditIcon from "@src/assets/edit.svg";
+import classNames from "classnames";
 
 export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
   onEdit,
@@ -27,9 +30,17 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
       header: "Действия",
       enableSorting: false,
       cell: ({ row }: { row: { original: Vacancy } }) => (
-        <div>
-          <button onClick={() => onEdit(row.original)}>Edit</button>
-          <button onClick={() => onDelete(row.original._id!)}>Delete</button>
+        <div className={classes.actions}>
+          <button onClick={() => onEdit(row.original)}>
+            <img src={EditIcon} alt="Edit Icon" className={classes.edit_icon} />
+          </button>
+          <button onClick={() => onDelete(row.original._id!)}>
+            <img
+              src={DeleteIcon}
+              alt="Delete Icon"
+              className={classes.delete_icon}
+            />
+          </button>
         </div>
       ),
     },
@@ -57,7 +68,7 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
     <table className={classes.table}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id}>
+          <tr key={headerGroup.id} className={classes.header_row}>
             {headerGroup.headers.map((header) => (
               <th
                 key={header.id}
@@ -66,11 +77,9 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
                     ? header.column.getToggleSortingHandler()
                     : undefined
                 }
-                style={{
-                  cursor: header.column.getCanSort() ? "pointer" : "default",
-                  display: "flex",
-                  alignItems: "center",
-                }}
+                className={classNames(classes.header, {
+                  [classes.header_sortable]: header.column.getCanSort(),
+                })}
               >
                 {header.isPlaceholder
                   ? null
@@ -81,14 +90,9 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
                   <img
                     src={SortIcon}
                     alt="Sort Icon"
-                    style={{
-                      marginLeft: "8px",
-                      width: "16px",
-                      height: "16px",
-                      filter: header.column.getIsSorted()
-                        ? "brightness(0)" // Темнее, если сортировка включена
-                        : "brightness(0.6)", // Светлее, если сортировки нет
-                    }}
+                    className={classNames(classes.sort_icon, {
+                      [classes.sort_icon_active]: header.column.getIsSorted(),
+                    })}
                   />
                 )}
               </th>

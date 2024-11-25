@@ -1,2 +1,55 @@
-.container {
+.table {
+  border-radius: 20px;
+  padding: 20px;
+  background: white;
+  .header_row {
+    .header {
+      //   min-width: 170px;
+      font-weight: 700;
+      padding: 0px 20px;
+      vertical-align: top;
+      cursor: default;
+      .sort_icon {
+        margin-left: 8px;
+        width: 12px;
+        height: 12px;
+        filter: brightness(0.7);
+      }
+      .sort_icon_active {
+        filter: brightness(0);
+      }
+    }
+    .header_sortable {
+      cursor: pointer;
+    }
+  }
+  .actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    button {
+      padding: 0.1em 0.2em;
+      img {
+        width: 18px;
+        height: 12px;
+      }
+    }
+  }
+
+  tbody tr {
+    height: 50px;
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #ffffff;
+  }
+
+  tbody tr:hover {
+    background-color: #eaeaea;
+  }
 }

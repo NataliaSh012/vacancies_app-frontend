@@ -51,21 +51,21 @@ function App() {
   if (error) return <p>Error: {error.message}</p>;
   const vacancies = data?.data || [];
   return (
-    <>
-      <h1>table</h1>
+    <div className='main'>
+      <h1>Список вакансий</h1>
       <AddCompanyTable
         data={vacancies}
         onEdit={editVacancy}
         onDelete={deleteVacancy}
       />
-      <button onClick={() => editVacancy(null)}>+ Add Vacancy</button>
+      <button onClick={() => editVacancy(null)}>+ Добавить</button>
       <VacancyModal
         isOpen={isModalOpen}
         onClose={closeModal}
         vacancy={editingVacancy}
         onSave={updateVacancy}
       />
-    </>
+    </div>
   );
 }
 
