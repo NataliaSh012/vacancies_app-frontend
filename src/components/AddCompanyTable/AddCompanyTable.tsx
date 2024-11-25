@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-table";
 import type { AddCompanyTableComponentProps } from "./AddCompanyTable.type";
 import { Vacancy } from "../VacancyModal/VacancyModal.type";
-import SortIcon from "/src/assets/sort.svg";
+import SortIcon from "@src/assets/sort.svg";
 
 export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
   onEdit,
