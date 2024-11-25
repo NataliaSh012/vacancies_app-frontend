@@ -6,12 +6,14 @@ import { VacancyModal } from "./components/VacancyModal";
 import { Vacancy } from "./components/VacancyModal/VacancyModal.type";
 import { useEditVacancyMutation } from "./api/editVacancy.query";
 import { useCreateVacancyMutation } from "./api/createVacancy.query";
+import { useDeleteVacancyMutation } from "./api/deleteVacancy.query";
 
 function App() {
   const { data, isLoading, error } = useVacanciesListQuery();
   const [isModalOpen, setModalOpen] = useState(false);
   const { mutate: editMutate } = useEditVacancyMutation();
   const { mutate: createMutate } = useCreateVacancyMutation();
+  const { mutate: deleteMutate } = useDeleteVacancyMutation();
   const [editingVacancy, setEditingVacancy] = useState<Vacancy | null>(null);
 
   const editVacancy = (vacancy: Vacancy | null) => {
@@ -39,8 +41,10 @@ function App() {
     setModalOpen(false);
   };
 
-  const deleteVacancy = () => {
-    console.log("delete");
+  const deleteVacancy = (id: string) => {
+     if (window.confirm("Are you sure you want to delete this vacancy?")) {
+       deleteMutate(id);
+     }
   };
 
   if (isLoading) return <p>Loading...</p>;
