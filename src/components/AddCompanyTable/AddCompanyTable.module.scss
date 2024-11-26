@@ -7,8 +7,13 @@
     border-radius: 20px;
     padding: 20px;
     background: white;;
-    min-width: 1200px;
+    width: 1200px;
     box-sizing: border-box;
+       td {
+      max-width: 250px; 
+      word-wrap: break-word; 
+      white-space: normal; 
+    }
     .header_row {
       .header {
         font-weight: 700;
@@ -28,6 +33,9 @@
       .header_sortable {
         cursor: pointer;
       }
+    }
+  tbody tr {
+      height: auto; 
     }
     .actions {
       display: flex;
@@ -64,7 +72,7 @@
 @media (max-width:1280px) {
   .table_container {
     .table {
-      min-width:700px;
+      width:700px;
     }
   }
 }
@@ -73,7 +81,7 @@
   .table_container {
     .table {
       width: 90%;
-      min-width: 600px;
+      width: 600px;
       .header {
         font-size: 14px;
         padding: 0 10px;
