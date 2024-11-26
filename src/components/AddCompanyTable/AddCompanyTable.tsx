@@ -65,55 +65,57 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
     );
   }
   return (
-    <table className={classes.table}>
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <tr key={headerGroup.id} className={classes.header_row}>
-            {headerGroup.headers.map((header) => (
-              <th
-                key={header.id}
-                onClick={
-                  header.column.getCanSort()
-                    ? header.column.getToggleSortingHandler()
-                    : undefined
-                }
-                className={classNames(classes.header, {
-                  [classes.header_sortable]: header.column.getCanSort(),
-                })}
-              >
-                {header.isPlaceholder
-                  ? null
-                  : header.column.columnDef.header instanceof Function
-                  ? header.column.columnDef.header(header.getContext())
-                  : header.column.columnDef.header}
-                {header.column.getCanSort() && (
-                  <img
-                    src={SortIcon}
-                    alt="Sort Icon"
-                    className={classNames(classes.sort_icon, {
-                      [classes.sort_icon_active]: header.column.getIsSorted(),
-                    })}
-                  />
-                )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
+    <div className={classes.table_container}>
+      <table className={classes.table}>
+        <thead>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id} className={classes.header_row}>
+              {headerGroup.headers.map((header) => (
+                <th
+                  key={header.id}
+                  onClick={
+                    header.column.getCanSort()
+                      ? header.column.getToggleSortingHandler()
+                      : undefined
+                  }
+                  className={classNames(classes.header, {
+                    [classes.header_sortable]: header.column.getCanSort(),
+                  })}
+                >
+                  {header.isPlaceholder
+                    ? null
+                    : header.column.columnDef.header instanceof Function
+                    ? header.column.columnDef.header(header.getContext())
+                    : header.column.columnDef.header}
+                  {header.column.getCanSort() && (
+                    <img
+                      src={SortIcon}
+                      alt="Sort Icon"
+                      className={classNames(classes.sort_icon, {
+                        [classes.sort_icon_active]: header.column.getIsSorted(),
+                      })}
+                    />
+                  )}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
 
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <tr key={row.id}>
-            {row.getVisibleCells().map((cell) => (
-              <td key={cell.id}>
-                {typeof cell.column.columnDef.cell === "function"
-                  ? cell.column.columnDef.cell(cell.getContext())
-                  : String(cell.getValue())}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id}>
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id}>
+                  {typeof cell.column.columnDef.cell === "function"
+                    ? cell.column.columnDef.cell(cell.getContext())
+                    : String(cell.getValue())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };

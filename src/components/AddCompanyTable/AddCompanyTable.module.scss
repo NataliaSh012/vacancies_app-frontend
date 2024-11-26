@@ -1,55 +1,97 @@
-.table {
-  border-radius: 20px;
-  padding: 20px;
-  background: white;
-  .header_row {
-    .header {
-      //   min-width: 170px;
-      font-weight: 700;
-      padding: 0px 20px;
-      vertical-align: top;
-      cursor: default;
-      .sort_icon {
-        margin-left: 8px;
-        width: 12px;
-        height: 12px;
-        filter: brightness(0.7);
+.table_container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+
+  .table {
+    border-radius: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid red;
+    min-width: 1200px;
+    box-sizing: border-box;
+    .header_row {
+      .header {
+        font-weight: 700;
+        padding: 0px 20px;
+        vertical-align: top;
+        cursor: default;
+        .sort_icon {
+          margin-left: 8px;
+          width: 12px;
+          height: 12px;
+          filter: brightness(0.7);
+        }
+        .sort_icon_active {
+          filter: brightness(0);
+        }
       }
-      .sort_icon_active {
-        filter: brightness(0);
-      }
-    }
-    .header_sortable {
-      cursor: pointer;
-    }
-  }
-  .actions {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    justify-content: center;
-    button {
-      padding: 0.1em 0.2em;
-      img {
-        width: 18px;
-        height: 12px;
+      .header_sortable {
+        cursor: pointer;
       }
     }
-  }
+    .actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
+      button {
+        padding: 0.1em 0.2em;
+        img {
+          width: 18px;
+          height: 12px;
+        }
+      }
+    }
 
-  tbody tr {
-    height: 50px;
-  }
+    tbody tr {
+      height: 50px;
+    }
 
-  tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
-  }
+    tbody tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
 
-  tbody tr:nth-child(even) {
-    background-color: #ffffff;
-  }
+    tbody tr:nth-child(even) {
+      background-color: #ffffff;
+    }
 
-  tbody tr:hover {
-    background-color: #eaeaea;
+    tbody tr:hover {
+      background-color: #eaeaea;
+    }
+  }
+}
+
+@media (max-width:1280px) {
+  .table_container {
+    .table {
+      min-width:700px;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .table_container {
+    .table {
+      width: 90%;
+      min-width: 600px;
+      .header {
+        font-size: 14px;
+        padding: 0 10px;
+      }
+    }
+
+    tbody tr {
+      font-size: 12px;
+    }
+
+    .actions {
+      button {
+        img {
+          width: 14px;
+          height: 12px;
+        }
+      }
+    }
   }
 }
