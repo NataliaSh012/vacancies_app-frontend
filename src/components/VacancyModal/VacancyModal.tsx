@@ -14,7 +14,7 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitting },
   } = useForm({
     defaultValues: {
       company: "",
@@ -23,6 +23,7 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
       status: "",
       note: "",
     },
+    mode: "onChange",
   });
 
   useEffect(() => {
@@ -91,7 +92,9 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
           <textarea {...register("note")} />
         </div>
         <div className={classes.actions}>
-          <button type="submit">Save</button>
+          <button type="submit" disabled={!isValid || isSubmitting}>
+            Save
+          </button>
           <button type="button" onClick={onClose}>
             Cancel
           </button>
