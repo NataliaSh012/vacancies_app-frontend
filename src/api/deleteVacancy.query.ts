@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client, QueryKeys } from "./shared";
-import { Vacancy } from '@src/components/VacancyModal/VacancyModal.type';
+import { Vacancy } from '@src/type/vacancies.type';
 
 export const useDeleteVacancyMutation = () => {
   const queryClient = useQueryClient();
