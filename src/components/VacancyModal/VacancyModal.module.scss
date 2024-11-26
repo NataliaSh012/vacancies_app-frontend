@@ -36,6 +36,9 @@ form {
     width: 100%;
     display: flex;
     flex-direction: column;
+    span {
+      color: red;
+    }
     label {
       font-weight: bold;
       margin-bottom: 5px;

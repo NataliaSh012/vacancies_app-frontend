@@ -1,4 +1,4 @@
-import { Vacancy } from '../VacancyModal/VacancyModal.type';
+import { Vacancy } from "@src/type/vacancies.type";
 
 export type AddCompanyTableComponentProps = {
   onEdit: (row: Vacancy) => void;
@@ -13,4 +13,3 @@ export type AddCompanyTableComponentProps = {
   }>;
   children?: React.ReactNode;
 };
-

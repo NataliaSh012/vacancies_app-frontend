@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import classes from "./VacancyModal.module.scss";
-import type { Vacancy, VacancyModalComponentProps } from "./VacancyModal.type";
+import type { VacancyModalComponentProps } from "./VacancyModal.type";
+import { Vacancy } from '@src/type/vacancies.type';
 import Modal from "react-modal";
 import { useForm } from "react-hook-form";
 
@@ -41,7 +42,6 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
   }, [vacancy, reset]);
 
   const onSubmit = (data: Vacancy) => {
-    console.log("Submitted data:", data);
     onSave(data);
     onClose();
     reset()
@@ -60,26 +60,32 @@ export const VacancyModal: React.FC<VacancyModalComponentProps> = ({
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={classes.form_field}>
-          <label>Company:</label>
+          <label>
+            Company <span>*</span>
+          </label>
           <input
             {...register("company", { required: "Company name is required" })}
           />
           {errors.company && <p>{errors.company.message}</p>}
         </div>
         <div className={classes.form_field}>
-          <label>Position:</label>
+          <label>Position <span>*</span></label>
           <input
             {...register("position", { required: "Position is required" })}
           />
           {errors.position && <p>{errors.position.message}</p>}
         </div>
         <div className={classes.form_field}>
-          <label>Salary:</label>
+          <label>
+            Salary <span>*</span>
+          </label>
           <input {...register("salary", { required: "Salary is required" })} />
           {errors.salary && <p>{errors.salary.message}</p>}
         </div>
         <div className={classes.form_field}>
-          <label>Status:</label>
+          <label>
+            Status <span>*</span>
+          </label>
           <select {...register("status", { required: "Status is required" })}>
             <option value="">Select status</option>
             <option value="Open">Open</option>

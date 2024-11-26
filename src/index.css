@@ -52,6 +52,11 @@ button:disabled {
   background-color: #ccc;
   cursor: not-allowed;    
 }
+button:disabled:hover {
+  border: 1px solid transparent;
+  background-color: #ccc; 
+  transition: border-color 0.25s;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

@@ -1,3 +1,5 @@
+import { Vacancy } from '@src/type/vacancies.type';
+
 export type VacancyModalComponentProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -6,11 +8,3 @@ export type VacancyModalComponentProps = {
   children?: React.ReactNode;
 };
 
-export type Vacancy = {
-  company: string;
-  position: string;
-  salary: string;
-  status: string;
-  note?: string;
-  _id?: string;
-};

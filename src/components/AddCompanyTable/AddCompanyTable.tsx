@@ -7,7 +7,7 @@ import {
   SortingState,
 } from "@tanstack/react-table";
 import type { AddCompanyTableComponentProps } from "./AddCompanyTable.type";
-import { Vacancy } from "../VacancyModal/VacancyModal.type";
+import { Vacancy } from '@src/type/vacancies.type';
 import SortIcon from "@src/assets/sort.svg";
 import DeleteIcon from "@src/assets/delete.svg";
 import EditIcon from "@src/assets/edit.svg";
@@ -60,7 +60,7 @@ export const AddCompanyTable: React.FC<AddCompanyTableComponentProps> = ({
   if (data.length === 0) {
     return (
       <p className={classes.noDataMessage}>
-        Еще никто не добавил вакансию. Будьте первым!
+        Еще никто не добавил вакансию. Будьте первым! 💪
       </p>
     );
   }
